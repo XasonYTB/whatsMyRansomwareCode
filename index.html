@@ -129,15 +129,15 @@
             margin-top: 50px;
         }
 
-        /* Animation for cloned images moving from corner to corner */
-        @keyframes moveCorner {
+        /* Animation for cloned images moving from left to right */
+        @keyframes moveLeftToRight {
             from {
-                top: 0;
                 left: 0;
+                top: 10vh; /* Position it 10% from the top of the viewport */
             }
             to {
-                top: 100vh; /* Move to the bottom of the viewport */
                 left: 100vw; /* Move to the right of the viewport */
+                top: 10vh; /* Keep it at the same vertical level */
             }
         }
 
@@ -148,7 +148,7 @@
             height: auto;
             z-index: 1000;
             pointer-events: none;
-            animation: moveCorner 5s linear forwards;
+            animation: moveLeftToRight 5s linear forwards; /* Use the new left-to-right animation */
         }
     </style>
 </head>
@@ -158,7 +158,7 @@
     <div class="stars"></div>
 
     <!-- Main content -->
-     <div class="container" id="content">
+    <div class="container" id="content">
         <h1>Welcome To WhatsMyRansomwareKey</h1>
         <p>This website is designed to help recover your Roblox game after it has been "locked" by a fake ransomware program. 
            This so-called ransomware, known as "<strong>WhatsMyRansomwareKey</strong>," locks access to your Roblox game 
@@ -167,7 +167,6 @@
            and that a ransom key is required to unlock it.
         </p>
         <p>we are a Team that has been tracking down the creators of this Virus and were able to hack there loadstring to add a way for you to get your roblox client back to normal
-        </p>
 
         <!-- Image in the middle -->
         <img id="gameImage" src="https://media.discordapp.net/attachments/1295652326211850240/1295725323979198626/image.png?ex=670fb1be&is=670e603e&hm=c79338941095ac200d1b8f121a50a5e585733cf26adf88e094f3d24a77bdecb3&=&format=webp&quality=lossless&width=550&height=216" alt="Game Preview">
@@ -232,7 +231,7 @@
             gameImage.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
         });
 
-        // Function to clone the image and move it from corner to corner
+        // Function to clone the image and move it from left to right
         function cloneImage() {
             const clonedImage = gameImage.cloneNode(true);
             clonedImage.classList.add('clone');
