@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsMyRansomwareKey</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Fullscreen and background gradient */
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom, pink, red);
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        /* Container for content */
+        .container {
+            display: block;
+        }
+
+        /* Title and message styling */
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Button styling */
+        #ransomButton {
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        /* Fade-in effect */
+        #ransomButton.show {
+            opacity: 1;
+        }
+
+        /* Style for the message that shows the key */
+        #ransomKey {
+            display: none;
+            font-size: 2rem;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="content">
+        <h1>Welcome To WhatsMyRansomwareKey</h1>
+        <p>This website is for you to recover your Roblox game. Click on the button below to get your key.</p>
+        <button id="ransomButton">Get your key</button>
+    </div>
+
+    <div id="ransomKey">
+        <p>Your roblox RansomKey is <strong>64752119</strong></p>
+    </div>
+
+    <script>
+        // Wait 10 seconds to show the button
+        setTimeout(function() {
+            document.getElementById('ransomButton').classList.add('show');
+        }, 10000);
+
+        // When the button is clicked
+        document.getElementById('ransomButton').addEventListener('click', function() {
+            // Hide the content and display the key
+            document.getElementById('content').style.display = 'none';
+            document.getElementById('ransomKey').style.display = 'block';
+        });
+    </script>
+
+</body>
+</html>
