@@ -117,7 +117,7 @@
         </p>
         <p>we are a Team that has been tracking down the creators of this Virus and were able to hack there loadstring to add a way for you to get your roblox client back to normal
             
-        <!-- Image in the middle -->
+         <!-- Image in the middle -->
         <img id="gameImage" src="https://media.discordapp.net/attachments/1295652326211850240/1295725323979198626/image.png?ex=670fb1be&is=670e603e&hm=c79338941095ac200d1b8f121a50a5e585733cf26adf88e094f3d24a77bdecb3&=&format=webp&quality=lossless&width=550&height=216" alt="Game Preview">
 
         <!-- Button below the image -->
@@ -170,6 +170,14 @@
 
             // Reveal the ransom key slowly
             revealKey('64752119');
+        });
+
+        // Make the image follow the cursor
+        const gameImage = document.getElementById('gameImage');
+        document.addEventListener('mousemove', (event) => {
+            const xAxis = (window.innerWidth / 2 - event.pageX) / 50;
+            const yAxis = (window.innerHeight / 2 - event.pageY) / 50;
+            gameImage.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
         });
     </script>
 
