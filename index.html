@@ -14,15 +14,13 @@
 
         /* Fullscreen and rotating background gradient */
         body {
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            height: 100%;
             background: linear-gradient(45deg, pink, red);
             background-size: 200% 200%;
             font-family: Arial, sans-serif;
             text-align: center;
             animation: gradientRotate 10s linear infinite;
+            overflow-y: scroll; /* Allow scrolling */
         }
 
         /* Keyframe for rotating the gradient */
@@ -36,6 +34,7 @@
         .container {
             max-width: 700px;
             display: block;
+            margin: 50px auto; /* Centered container with margin */
             perspective: 1000px; /* To create a 3D perspective */
         }
 
@@ -54,6 +53,25 @@
             text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3); /* 3D text shadow */
         }
 
+        /* Styling for fake random letters */
+        .random-letters {
+            font-family: "Courier New", monospace;
+            letter-spacing: 0.1rem;
+        }
+
+        /* Image with hover effects */
+        #gameImage {
+            margin: 20px auto; /* Center the image */
+            display: block;
+            transform: rotateY(5deg) scale(1.05); /* Slight rotation and scaling for 3D look */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Shadow for 3D effect */
+            transition: transform 0.3s ease-in-out; /* Hover effect */
+        }
+
+        #gameImage:hover {
+            transform: rotateY(0deg) scale(1.1); /* Lift the image when hovering */
+        }
+
         /* Button styling */
         #ransomButton {
             padding: 10px 20px;
@@ -65,15 +83,19 @@
             border-radius: 5px;
             opacity: 0;
             pointer-events: none; /* Prevent clicking */
-            transition: opacity 1s ease-in-out;
+            transition: opacity 1s ease-in-out, transform 0.3s ease-in-out;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* 3D button shadow */
             transform: translateZ(20px); /* Lift the button for a 3D effect */
         }
 
-        /* Fade-in effect */
         #ransomButton.show {
             opacity: 1;
             pointer-events: auto; /* Allow clicking once visible */
+        }
+
+        #ransomButton:hover {
+            transform: translateZ(30px) scale(1.1); /* Lift and enlarge the button when hovering */
+            background-color: #444; /* Slightly lighter on hover */
         }
 
         /* Style for the message that shows the key */
@@ -83,19 +105,7 @@
             color: white;
             text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4); /* 3D text shadow effect */
             transform: rotateX(10deg); /* Tilted for 3D effect */
-        }
-
-        /* Styling for fake random letters */
-        .random-letters {
-            font-family: "Courier New", monospace;
-            letter-spacing: 0.1rem;
-        }
-
-        /* Add the image with 3D effect */
-        #gameImage {
-            margin-top: 20px;
-            transform: rotateY(5deg) scale(1.05); /* Slight rotation and scaling for 3D look */
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Shadow for 3D effect */
+            margin-top: 50px;
         }
     </style>
 </head>
@@ -109,10 +119,21 @@
            Once activated, the player's game is "blocked," and the user is presented with a message stating that their game has been locked 
            and that a ransom key is required to unlock it.
         </p>
-        <button id="ransomButton">Get your key</button>
+        <p>
+            This is all just a joke! The website you are on right now will generate a fake ransom key that "unlocks" the game. 
+            The key does nothing, but it's a fun way to prank your friends. Click on the button below to receive your fake key 
+            (don’t worry, it won’t actually mess with your Roblox game).
+        </p>
+        <p>
+            Note: This is just for fun and meant as a harmless prank. No real data or accounts are affected. Always be careful with 
+            what you download and install, and never fall for real scams. Stay safe!
+        </p>
 
-        <!-- Add the image below the button -->
+        <!-- Image in the middle -->
         <img id="gameImage" src="https://media.discordapp.net/attachments/1295652326211850240/1295725323979198626/image.png?ex=670fb1be&is=670e603e&hm=c79338941095ac200d1b8f121a50a5e585733cf26adf88e094f3d24a77bdecb3&=&format=webp&quality=lossless&width=550&height=216" alt="Game Preview">
+
+        <!-- Button below the image -->
+        <button id="ransomButton">Get your key</button>
     </div>
 
     <div id="ransomKey">
