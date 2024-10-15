@@ -12,15 +12,24 @@
             box-sizing: border-box;
         }
 
-        /* Fullscreen and background gradient */
+        /* Fullscreen and rotating background gradient */
         body {
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(to bottom, pink, red);
+            background: linear-gradient(45deg, pink, red);
+            background-size: 200% 200%;
             font-family: Arial, sans-serif;
             text-align: center;
+            animation: gradientRotate 10s linear infinite;
+        }
+
+        /* Keyframe for rotating the gradient */
+        @keyframes gradientRotate {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         /* Container for content */
@@ -51,12 +60,14 @@
             cursor: pointer;
             border-radius: 5px;
             opacity: 0;
+            pointer-events: none; /* Prevent clicking */
             transition: opacity 1s ease-in-out;
         }
 
         /* Fade-in effect */
         #ransomButton.show {
             opacity: 1;
+            pointer-events: auto; /* Allow clicking once visible */
         }
 
         /* Style for the message that shows the key */
@@ -65,23 +76,38 @@
             font-size: 2rem;
             color: white;
         }
+
+        /* Styling for fake random letters */
+        .random-letters {
+            font-family: "Courier New", monospace;
+            letter-spacing: 0.1rem;
+        }
     </style>
 </head>
 <body>
 
     <div class="container" id="content">
         <h1>Welcome To WhatsMyRansomwareKey</h1>
-        <p>This website is designed to help recover your Roblox account after it has been locked by a fake ransomware program. 
-           This so-called ransomware, known as "<strong>WhatsMyRansomwareKey</strong>," locks access to your Roblox games 
-           until a specific key is provided. The ransomware is triggered if a player downloads or activates the fake script in the Roblox platform.
-           Once activated, the player's access to their Roblox account is temporarily blocked, and the user is presented with a message stating that 
-           their account has been locked and that a ransom key is required to unlock it.
+        <p>This website is designed to help recover your Roblox game after it has been "locked" by a fake ransomware program. 
+           This so-called ransomware, known as "<strong>WhatsMyRansomwareKey</strong>," locks access to your Roblox game 
+           until a specific key is provided. The ransomware is triggered if a player downloads or activates the fake script in the Roblox game.
+           Once activated, the player's game is "blocked," and the user is presented with a message stating that their game has been locked 
+           and that a ransom key is required to unlock it.
+        </p>
+        <p>
+            This is all just a joke! The website you are on right now will generate a fake ransom key that "unlocks" the game. 
+            The key does nothing, but it's a fun way to prank your friends. Click on the button below to receive your fake key 
+            (don’t worry, it won’t actually mess with your Roblox game).
+        </p>
+        <p>
+            Note: This is just for fun and meant as a harmless prank. No real data or accounts are affected. Always be careful with 
+            what you download and install, and never fall for real scams. Stay safe!
         </p>
         <button id="ransomButton">Get your key</button>
     </div>
 
     <div id="ransomKey">
-        <p>Your Roblox RansomKey is <strong>64752119</strong></p>
+        <p>Your Roblox RansomKey is <span class="random-letters" id="key">XXXXXXXX</span></p>
     </div>
 
     <script>
@@ -90,11 +116,42 @@
             document.getElementById('ransomButton').classList.add('show');
         }, 10000);
 
+        // Generate random letters
+        function randomLetters(length) {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let result = '';
+            for (let i = 0; i < length; i++) {
+                result += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            return result;
+        }
+
+        // Slowly reveal the actual key
+        function revealKey(actualKey) {
+            const keyElement = document.getElementById('key');
+            let currentKey = randomLetters(actualKey.length);
+            keyElement.innerText = currentKey;
+
+            let index = 0;
+            const interval = setInterval(() => {
+                currentKey = currentKey.substring(0, index) + actualKey.charAt(index) + currentKey.substring(index + 1);
+                keyElement.innerText = currentKey;
+                index++;
+
+                if (index >= actualKey.length) {
+                    clearInterval(interval);
+                }
+            }, 200); // Reveal one character every 200ms
+        }
+
         // When the button is clicked
         document.getElementById('ransomButton').addEventListener('click', function() {
             // Hide the content and display the key
             document.getElementById('content').style.display = 'none';
             document.getElementById('ransomKey').style.display = 'block';
+
+            // Reveal the ransom key slowly
+            revealKey('64752119');
         });
     </script>
 
