@@ -38,19 +38,23 @@
             display: block;
         }
 
-        /* Title and message styling */
+        /* Title and message styling with 3D effect */
         h1 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2); /* 3D effect */
+            color: white;
         }
 
         p {
             font-size: 1.2rem;
             margin-bottom: 2rem;
             line-height: 1.6;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1); /* Subtle 3D text */
+            color: white;
         }
 
-        /* Button styling */
+        /* 3D Button styling */
         #ransomButton {
             padding: 10px 20px;
             font-size: 1.1rem;
@@ -58,10 +62,18 @@
             color: white;
             border: none;
             cursor: pointer;
-            border-radius: 5px;
+            border-radius: 10px;
             opacity: 0;
             pointer-events: none; /* Prevent clicking */
-            transition: opacity 1s ease-in-out;
+            transition: opacity 1s ease-in-out, transform 0.2s;
+            box-shadow: 0px 6px 0px #222; /* 3D effect shadow */
+            text-transform: uppercase;
+        }
+
+        /* Button hover effect for more depth */
+        #ransomButton:hover {
+            transform: translateY(-3px); /* Lifts button slightly */
+            box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2); /* Deepens shadow */
         }
 
         /* Fade-in effect */
@@ -75,12 +87,21 @@
             display: none;
             font-size: 2rem;
             color: white;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2); /* 3D effect */
         }
 
         /* Styling for fake random letters */
         .random-letters {
             font-family: "Courier New", monospace;
             letter-spacing: 0.1rem;
+        }
+
+        /* Image styling */
+        #previewImage {
+            margin-top: 2rem;
+            width: 300px;
+            border-radius: 15px;
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3); /* 3D shadow for image */
         }
     </style>
 </head>
@@ -95,11 +116,18 @@
            and that a ransom key is required to unlock it.
         </p>
         <p>
-            we are a agency that will find your key that will remove this virus from your roblox client we are sorry for any damages done
-            by this virus and we will fix this in a instant. just click on the button down the screen and then past the code into your 
-            roblox client.
+            This is all just a joke! The website you are on right now will generate a fake ransom key that "unlocks" the game. 
+            The key does nothing, but it's a fun way to prank your friends. Click on the button below to receive your fake key 
+            (don’t worry, it won’t actually mess with your Roblox game).
+        </p>
+        <p>
+            Note: This is just for fun and meant as a harmless prank. No real data or accounts are affected. Always be careful with 
+            what you download and install, and never fall for real scams. Stay safe!
         </p>
         <button id="ransomButton">Get your key</button>
+
+        <!-- Image that shows below the button -->
+        <img id="previewImage" src="https://via.placeholder.com/300x150.png?text=Your+Game+Locked+Preview" alt="Fake Game Locked Preview">
     </div>
 
     <div id="ransomKey">
@@ -114,7 +142,7 @@
 
         // Generate random letters
         function randomLetters(length) {
-            const characters = '0123456789';
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
             let result = '';
             for (let i = 0; i < length; i++) {
                 result += characters.charAt(Math.floor(Math.random() * characters.length));
